@@ -22,16 +22,16 @@ Also, searches are executed concurrently until the first returns, so a result sh
 ## Examples
 ### Intuitively working with default settings
 #### Intuitively finding controls
-HtmlEdit firstNameTextBox = Intuitively.Find("First Name");
+`HtmlEdit firstNameTextBox = Intuitively.Find("First Name");`
 
-HtmlButton submitButton = Intuitively.Find("Submit");
+`HtmlButton submitButton = Intuitively.Find("Submit");`
 
 #### Intuitively setting values
-Intuitively.Set("First Name").To("Assaf");
+`Intuitively.Set("First Name").To("Assaf");`
 
-Intuitively.Set("Gender").To("Male");
+`Intuitively.Set("Gender").To("Male");`
 
-Intuitively.Click("Submit");
+`Intuitively.Click("Submit");`
 
 ### Intuitively working with custom settings
 ```csharp
