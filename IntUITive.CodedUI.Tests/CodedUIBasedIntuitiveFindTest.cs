@@ -27,24 +27,30 @@ namespace IntUITive.CodedUI.Tests
         }
 
         [TestMethod]
-        public void Find_WithNoTerm_ReturnsNull()
+        public void Find_WithNoTerm_ShouldFail()
         {
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestPages", "PageWithTextBox.html");
             Assert.IsTrue(File.Exists(path));
             var browserWindow = BrowserWindow.Launch("file://"+path);
             var intuitively = Intuitively.Search(browserWindow);
-            intuitively.Find(null).Should().BeNull("nothing comes from nothing.");
+
+            Action findNull = () => intuitively.Find(null);
+            
+            findNull.ShouldThrow<ArgumentNullException>("nothing comes from nothing");
 
         }
 
         [TestMethod]
-        public void Find_WithEmptyString_ReturnsNull()
+        public void Find_WithEmptyString_ShouldFail()
         {
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestPages", "PageWithTextBox.html");
             Assert.IsTrue(File.Exists(path));
             var browserWindow = BrowserWindow.Launch("file://" + path);
             var intuitively = Intuitively.Search(browserWindow);
-            intuitively.Find(string.Empty).Should().BeNull("empty term means empty hands.");
+            
+            Action findEmptyString = () => intuitively.Find(String.Empty);
+
+            findEmptyString.ShouldThrow<ArgumentException>("empty term means empty hands", "term");
         }
 
         #region Additional test attributes
