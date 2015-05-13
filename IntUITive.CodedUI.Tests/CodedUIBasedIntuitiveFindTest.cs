@@ -32,7 +32,7 @@ namespace IntUITive.CodedUI.Tests
             var intuitively = Intuitively.Search(GetBrowserWindowFor("PageWithTextBox.html"));
 
             Action findNull = () => intuitively.Find(null);
-            
+
             findNull.ShouldThrow<ArgumentNullException>("nothing comes from nothing");
 
         }
@@ -41,20 +41,26 @@ namespace IntUITive.CodedUI.Tests
         public void Find_WithEmptyString_ShouldFail()
         {
             var intuitively = Intuitively.Search(GetBrowserWindowFor("PageWithTextBox.html"));
-            
+
             Action findEmptyString = () => intuitively.Find(String.Empty);
 
             findEmptyString.ShouldThrow<ArgumentException>("empty term means empty hands", "term");
         }
 
+        [TestMethod]
+        public void Find_WithUnknownTerm_ReturnsNull()
+        {
+            var intuitively = Intuitively.Search(GetBrowserWindowFor("PageWithTextBox.html"));
+
+            intuitively.Find("unknown control").Should().BeNull("it isn't on the page");
+        }
+        
         private static BrowserWindow GetBrowserWindowFor(string htmlPageName)
         {
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestPages", htmlPageName);
             var browserWindow = BrowserWindow.Launch("file://" + path);
             return browserWindow;
         }
-
-
         #region Additional test attributes
 
         // You can use the following additional attributes as you write your tests:
@@ -79,17 +85,8 @@ namespace IntUITive.CodedUI.Tests
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
         ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-        private TestContext testContextInstance;
+        public TestContext TestContext { get; set; }
+
+
     }
 }
