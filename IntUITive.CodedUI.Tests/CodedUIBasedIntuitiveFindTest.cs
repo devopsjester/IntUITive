@@ -14,6 +14,7 @@ namespace IntUITive.CodedUI.Tests
 {
     using System.IO;
     using FluentAssertions;
+    using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 
     /// <summary>
     /// Summary description for CodedUITest1
@@ -29,7 +30,7 @@ namespace IntUITive.CodedUI.Tests
         [TestMethod]
         public void Find_WithNoTerm_ShouldFail()
         {
-            var intuitively = Intuitively.Search(GetBrowserWindowFor("PageWithTextBox.html"));
+            var intuitively = Intuitively.Search(TestHelper.GetBrowserWindowFor("PageWithTextBox.html"));
 
             Action findNull = () => intuitively.Find(null);
 
@@ -40,7 +41,7 @@ namespace IntUITive.CodedUI.Tests
         [TestMethod]
         public void Find_WithEmptyString_ShouldFail()
         {
-            var intuitively = Intuitively.Search(GetBrowserWindowFor("PageWithTextBox.html"));
+            var intuitively = Intuitively.Search(TestHelper.GetBrowserWindowFor("PageWithTextBox.html"));
 
             Action findEmptyString = () => intuitively.Find(String.Empty);
 
@@ -50,17 +51,23 @@ namespace IntUITive.CodedUI.Tests
         [TestMethod]
         public void Find_WithUnknownTerm_ReturnsNull()
         {
-            var intuitively = Intuitively.Search(GetBrowserWindowFor("PageWithTextBox.html"));
+            var intuitively = Intuitively.Search(TestHelper.GetBrowserWindowFor("PageWithTextBox.html"));
 
             intuitively.Find("unknown control").Should().BeNull("it isn't on the page");
         }
-        
-        private static BrowserWindow GetBrowserWindowFor(string htmlPageName)
+
+        [TestMethod]
+        public void Find_WithElementId_ReturnsHtmlControl()
         {
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestPages", htmlPageName);
-            var browserWindow = BrowserWindow.Launch("file://" + path);
-            return browserWindow;
+            var intuitively = Intuitively.Search(TestHelper.GetBrowserWindowFor("PageWithTextBox.html"));
+
+            var firstNameInputElement = intuitively.Find("firstName");
+
+            firstNameInputElement.Should().NotBeNull("it is there").
+                And.BeOfType<HtmlControl>("it is an HTML input element");
+            firstNameInputElement.Id.Should().Be("firstName", "it should find the first name");
         }
+
         #region Additional test attributes
 
         // You can use the following additional attributes as you write your tests:
