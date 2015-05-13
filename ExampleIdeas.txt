@@ -1,0 +1,27 @@
+### Intuitively working with default settings
+#### Intuitively finding controls
+```
+var intuitively = Intuitively.Search("http://localhost/Sample/Page.html");
+HtmlEdit firstNameTextBox = Intuitively.Find("First Name");
+HtmlButton submitButton = Intuitively.Find("Submit");
+```
+
+#### Intuitively setting values
+```
+Intuitively.Set("First Name").To("Assaf");
+Intuitively.Set("Gender").To("Male");
+Intuitively.Click("Submit");
+```
+
+### Intuitively working with custom settings
+```csharp
+var intuitively = Intuitively.Configure(_ => {
+    RunAlgorithms = Serially,
+    AlgorithmPriority = {
+        IntuitivelySearchBy.ElementId,
+        IntuitivelySearchBy.ElementCaption,
+        IntuitivelySearchBy.AllOthers
+});
+intuitively.Search("http://somesite.com/some/other/page.html");
+intuitively.Find
+```
