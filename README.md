@@ -34,7 +34,7 @@ Intuitively.Set("Gender").To("Male");
 Intuitively.Click("Submit");
 
 ### Intuitively working with custom settings
-```javascript
+```csharp
 var intuitively = Intuitively.Configure(_ => {
     RunAlgorithms = Serially,
     AlgorithmPriority = {
