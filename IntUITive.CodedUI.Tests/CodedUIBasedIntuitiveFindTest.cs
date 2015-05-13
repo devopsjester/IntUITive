@@ -29,10 +29,7 @@ namespace IntUITive.CodedUI.Tests
         [TestMethod]
         public void Find_WithNoTerm_ShouldFail()
         {
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestPages", "PageWithTextBox.html");
-            Assert.IsTrue(File.Exists(path));
-            var browserWindow = BrowserWindow.Launch("file://"+path);
-            var intuitively = Intuitively.Search(browserWindow);
+            var intuitively = Intuitively.Search(GetBrowserWindowFor("PageWithTextBox.html"));
 
             Action findNull = () => intuitively.Find(null);
             
@@ -43,15 +40,20 @@ namespace IntUITive.CodedUI.Tests
         [TestMethod]
         public void Find_WithEmptyString_ShouldFail()
         {
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestPages", "PageWithTextBox.html");
-            Assert.IsTrue(File.Exists(path));
-            var browserWindow = BrowserWindow.Launch("file://" + path);
-            var intuitively = Intuitively.Search(browserWindow);
+            var intuitively = Intuitively.Search(GetBrowserWindowFor("PageWithTextBox.html"));
             
             Action findEmptyString = () => intuitively.Find(String.Empty);
 
             findEmptyString.ShouldThrow<ArgumentException>("empty term means empty hands", "term");
         }
+
+        private static BrowserWindow GetBrowserWindowFor(string htmlPageName)
+        {
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestPages", htmlPageName);
+            var browserWindow = BrowserWindow.Launch("file://" + path);
+            return browserWindow;
+        }
+
 
         #region Additional test attributes
 
