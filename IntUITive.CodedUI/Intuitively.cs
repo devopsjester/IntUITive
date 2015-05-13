@@ -29,9 +29,22 @@
                 throw new ArgumentException("required parameter", "term");
             }
 
+            var htmlControl = FindControlById(term) ?? FindControlByPlaceholder(term);
+
+            return htmlControl;
+        }
+
+        private HtmlControl FindControlByPlaceholder(string term)
+        {
+            var htmlControl = new HtmlControl(_browserWindow);
+            htmlControl.SearchProperties["PlaceHolder"] = term;
+            return htmlControl.Exists ? htmlControl : null;
+        }
+
+        private HtmlControl FindControlById(string term)
+        {
             var htmlControl = new HtmlControl(_browserWindow);
             htmlControl.SearchProperties[HtmlControl.PropertyNames.Id] = term;
-
             return htmlControl.Exists ? htmlControl : null;
         }
     }

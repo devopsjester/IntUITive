@@ -23,10 +23,6 @@ namespace IntUITive.CodedUI.Tests
     [DeploymentItem(@"TestPages\", "TestPages")]
     public class CodedUIBasedIntuitiveFindTest
     {
-        public CodedUIBasedIntuitiveFindTest()
-        {
-        }
-
         [TestMethod]
         public void Find_WithNoTerm_ShouldFail()
         {
@@ -65,7 +61,19 @@ namespace IntUITive.CodedUI.Tests
 
             firstNameInputElement.Should().NotBeNull("it is there").
                 And.BeOfType<HtmlControl>("it is an HTML input element");
-            firstNameInputElement.Id.Should().Be("firstName", "it should find the first name");
+            firstNameInputElement.Id.Should().Be("firstName", "it should find the first name textbox");
+        }
+
+        [TestMethod]
+        public void Find_WithPlaceHolder_ReturnsHtmlControl()
+        {
+            var intuitively = Intuitively.Search(TestHelper.GetBrowserWindowFor("PageWithTextBox.html"));
+
+            var firstNameInputElement = intuitively.Find("First Name");
+
+            firstNameInputElement.Should().NotBeNull("it is there").
+                And.BeOfType<HtmlControl>("it is an HTML input element");
+            firstNameInputElement.Id.Should().Be("firstName", "it should find the first name text box");
         }
 
         #region Additional test attributes
