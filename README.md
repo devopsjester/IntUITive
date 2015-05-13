@@ -20,4 +20,26 @@ Also, searches are executed concurrently until the first returns, so a result sh
 7. Hierarchically closest label
 
 ## Examples
-TBD.
+### Intuitively working with default settings
+#### Intuitively finding controls
+HtmlEdit firstNameTextBox = Intuitively.Find("First Name");
+
+HtmlButton submitButton = Intuitively.Find("Submit");
+
+#### Intuitively setting values
+Intuitively.Set("First Name").To("Assaf");
+
+Intuitively.Set("Gender").To("Male");
+
+Intuitively.Click("Submit");
+
+### Intuitively working with custom settings
+```javascript
+var intuitively = Intuitively.Configure(_ => {
+    RunAlgorithms = Serially,
+    AlgorithmPriority = {
+        IntuitivelySearchBy.ElementId,
+        IntuitivelySearchBy.ElementCaption,
+        IntuitivelySearchBy.AllOthers
+});
+```
