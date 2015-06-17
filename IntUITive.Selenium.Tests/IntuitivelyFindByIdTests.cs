@@ -12,5 +12,13 @@ namespace IntUITive.Selenium.Tests
 
             Assert.That(element.GetAttribute("id"), Is.EqualTo("uniqueId"));
         }
+
+        [Test]
+        public void Find_WithCaseInsensitiveId_ReturnsSingleElement()
+        {
+            var element = Intuitively.Find("UNIQUEID");
+
+            Assert.That(element.GetAttribute("id"), Is.EqualTo("uniqueId"));
+        }
     }
 }

@@ -14,9 +14,11 @@ namespace IntUITive.Selenium.Tests
         public void Setup()
         {
             var sampleFolder = new Uri(
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestSamples", "SimplePage.html"));
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                             "TestSamples\\SimplePage.html")
+                );
             IWebDriver driver = new PhantomJSDriver();
-            driver.Url = sampleFolder.AbsoluteUri; 
+            driver.Url = sampleFolder.AbsoluteUri;
             Intuitively = new Intuitively(driver);
         }
     }
