@@ -6,7 +6,7 @@ namespace IntUITive.Selenium.Tests
     public class IntuitivelyFindByIdTests : BaseIntuitivelyTests
     {
         [Test]
-        public void Find_WithIdAsTerm_ReturnsSingleElement()
+        public void Find_WithIdAsTerm_ReturnsElement()
         {
             var element = Intuitively.Find("uniqueId");
 
@@ -14,11 +14,12 @@ namespace IntUITive.Selenium.Tests
         }
 
         [Test]
-        public void Find_WithCaseInsensitiveId_ReturnsSingleElement()
+        public void Find_WithCaseInsensitiveId_ReturnsElement()
         {
             var element = Intuitively.Find("UNIQUEID");
 
             Assert.That(element.GetAttribute("id"), Is.EqualTo("uniqueId"));
         }
+
     }
 }
