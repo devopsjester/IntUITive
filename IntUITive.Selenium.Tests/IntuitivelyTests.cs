@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace IntUITive.Selenium.Tests
 {
     [TestFixture]
-    public class IntuitivelyTests
+    public class EdgeCaseTests
     {
         [Test]
         public void Find_WithNoTerm_Fails()
