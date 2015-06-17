@@ -8,30 +8,24 @@ using NUnit.Framework;
 namespace IntUITive.Selenium.Tests
 {
     [TestFixture]
-    public class EdgeCaseTests
+    public class EdgeCaseTests : BaseIntuitivelyTests
     {
         [Test]
         public void Find_WithNoTerm_Fails()
-        { 
-            var intuitively = new Intuitively();
-
-            Assert.That(() => intuitively.Find(null), Throws.Exception.TypeOf<ArgumentNullException>());
+        {
+            Assert.That(() => Intuitively.Find(null), Throws.Exception.TypeOf<ArgumentNullException>());
         }
 
         [Test]
         public void Find_WithEmptyTerm_Fails()
         {
-            var intuitively = new Intuitively();
-
-            Assert.That(() => intuitively.Find(""), Throws.Exception.TypeOf<ArgumentException>());
+            Assert.That(() => Intuitively.Find(""), Throws.Exception.TypeOf<ArgumentException>());
         }
 
         [Test]
         public void Find_WithUnidentifiableTerm_ReturnsNothing()
         {
-            var intuitively = new Intuitively();
-
-            var element = intuitively.Find("unidentifiable term");
+            var element = Intuitively.Find("unidentifiable term");
 
             Assert.That(element, Is.Null);
         }
