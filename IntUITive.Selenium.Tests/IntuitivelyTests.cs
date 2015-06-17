@@ -12,7 +12,7 @@ namespace IntUITive.Selenium.Tests
     {
         [Test]
         public void Find_WithNoTerm_Fails()
-        {
+        { 
             var intuitively = new Intuitively();
 
             Assert.That(() => intuitively.Find(null), Throws.Exception.TypeOf<ArgumentNullException>());
@@ -21,7 +21,19 @@ namespace IntUITive.Selenium.Tests
         [Test]
         public void Find_WithEmptyTerm_Fails()
         {
+            var intuitively = new Intuitively();
 
+            Assert.That(() => intuitively.Find(""), Throws.Exception.TypeOf<ArgumentException>());
+        }
+
+        [Test]
+        public void Find_WithUnidentifiableTerm_ReturnsNothing()
+        {
+            var intuitively = new Intuitively();
+
+            var element = intuitively.Find("unidentifiable term");
+
+            Assert.That(element, Is.Null);
         }
     }
 }
