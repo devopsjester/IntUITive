@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Linq;
 using OpenQA.Selenium;
 
 namespace IntUITive.Selenium
 {
     public class Intuitively
     {
+        private readonly IWebDriver _driver;
+
+        public Intuitively(IWebDriver driver)
+        {
+            _driver = driver;
+        }
+
         public IWebElement Find(string term)
         {
             if (term == null)
@@ -15,8 +23,18 @@ namespace IntUITive.Selenium
             {
                 throw new ArgumentException("parameter cannot be empty or null.", "term");
             }
-            
-            return null;
+
+            var foundElement = TryFindById(term);
+
+            return foundElement;
+        }
+
+        private IWebElement TryFindById(string term)
+        {
+            var possibleElements = _driver.FindElements(By.Id(term));
+
+            return possibleElements.FirstOrDefault();
         }
     }
+
 }

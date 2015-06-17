@@ -6,9 +6,11 @@ namespace IntUITive.Selenium.Tests
     public class IntuitivelyFindByIdTests : BaseIntuitivelyTests
     {
         [Test]
-        public void Find_WithIdAsTerm_ReturnsElement()
+        public void Find_WithIdAsTerm_ReturnsSingleElement()
         {
-            
+            var element = Intuitively.Find("uniqueId");
+
+            Assert.That(element.GetAttribute("id"), Is.EqualTo("uniqueId"));
         }
     }
 }
