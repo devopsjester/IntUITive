@@ -6,20 +6,31 @@ using OpenQA.Selenium.PhantomJS;
 
 namespace IntUITive.Selenium.Tests
 {
-    public class BaseIntuitivelyTests
+    using System.Text;
+
+    public abstract class BaseIntuitivelyTests
     {
+        protected IWebDriver Driver;
         protected Intuitively Intuitively;
 
-        [SetUp]
-        public void Setup()
+        [TestFixtureSetUp]
+        public void FixtureSetup()
         {
-            var sampleFolder = new Uri(
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                             "TestSamples\\SimplePage.html")
-                );
-            IWebDriver driver = new PhantomJSDriver();
-            driver.Url = sampleFolder.AbsoluteUri;
-            Intuitively = new Intuitively(driver);
+            Driver = new PhantomJSDriver
+            {
+                Url = TestSample.UriFromFile("UniqueIdHeader.html")
+            };
+            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(4000));
+
+            Intuitively = new Intuitively(Driver);
+
+        }
+
+        [TestFixtureTearDown]
+        public void FixtureTeardown()
+        {
+            Driver.Quit();
+            Driver.Dispose();
         }
     }
 }
