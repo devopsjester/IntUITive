@@ -12,7 +12,7 @@ namespace IntUITive.Selenium.Tests
 
             Assert.That(element.GetAttribute("id"), Is.EqualTo("uniqueId"));
         }
-
+        
         [Test]
         public void Find_WithCaseInsensitiveId_ReturnsElement()
         {
@@ -21,5 +21,20 @@ namespace IntUITive.Selenium.Tests
             Assert.That(element.GetAttribute("id"), Is.EqualTo("uniqueId"));
         }
 
+        [Test]
+        public void Find_WithPartialMatch_ReturnsElement()
+        {
+            var element = Intuitively.Find("unique");
+
+            Assert.That(element.GetAttribute("id"), Is.EqualTo("uniqueId"));
+        }
+
+        [Test]
+        public void Find_WithMultipleMatches_ReturnsFirstElement()
+        {
+            var element = Intuitively.Find("special");
+
+            Assert.That(element.GetAttribute("id"), Is.EqualTo("specialCase1"));
+        }
     }
 }
