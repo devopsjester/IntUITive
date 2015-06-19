@@ -14,5 +14,17 @@
             Assert.That(Intuitively.Find("First Name").GetAttribute("id"),
                 Is.EqualTo("firstName"));
         }
+
+        [Test]
+        public void Find_WithOrphanedLabel_ReturnsNothing()
+        {
+            Assert.That(Intuitively.Find("Orphan"), Is.Null);
+        }
+
+        [Test]
+        public void Find_WithLabelForPartiallyIdentified_ReturnsLabel()
+        {
+            Assert.That(Intuitively.Find("gender").Text, Is.EqualTo("Gender:"));
+        }
     }
 }

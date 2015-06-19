@@ -22,11 +22,11 @@ namespace IntUITive.Selenium.Tests
         }
 
         [Test]
-        public void Find_WithPartialMatch_ReturnsElement()
+        public void Find_WithPartialMatch_ReturnsNothing()
         {
             var element = Intuitively.Find("unique");
 
-            Assert.That(element.GetAttribute("id"), Is.EqualTo("uniqueId"));
+            Assert.That(element.GetAttribute("id"), Is.Null);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace IntUITive.Selenium.Tests
         {
             var element = Intuitively.Find("special");
 
-            Assert.That(element.GetAttribute("id"), Is.EqualTo("specialCase1"));
+            Assert.That(element.Text, Is.EqualTo("Case #1"));
         }
     }
 }

@@ -1,17 +1,89 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>This is a page</title>
+    <title>Test sample page</title>
+    <style>
+        div { margin-bottom: 10px; }
+    </style>
 </head>
 <body>
-    <h2 id="uniqueId">Some page</h2>
-    
-    <h3 id="specialCase1">Case #1</h3>
-    <h3 id="specialCase2">Case #2</h3>
+    <!-- A unique ID on the page -->
+    <h2 id="uniqueId">This is a uniquely identified header</h2>
 
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName"/>
+    <!-- A unique name on the page -->
+    <h2 name="uniqueName">This is a uniquely named header</h2>
+
+    <!-- Two headers, same id, different texts  -->
+    <h3 id="sameId">Same Id header #1</h3>
+    <h3 id="sameId">Same Id header #2</h3>
+
+    <!-- Two headers, same text, different ids  -->
+    <h3 id="headerId1">Same text header</h3>
+    <h3 id="headerId2">Same text header</h3>
+
+    <!-- label-for'ed input -->
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" />
+    </div>
+
+    <!-- input contained in label -->
+    <div>
+        <label>Last Name: <input type="text" id="lastName" /></label>
+
+    </div>
+
+    <!-- input follows label -->
+    <div>
+        <label>Street Address: </label>
+        <input type="text" id="address" />
+    </div>
+
+    <!-- input with placeholder -->
+    <div><input type="text" placeholder="City" /></div>
+
+
+
+    <!-- childless label -->
+    <div><label>Just a label</label></div>
+
+    <!-- Orphan label -->
+    <div><label for="otherStuff">Other questions</label></div>
+	<!-- there is no element named or ID'ed as 'otherStuff' -->
+	
+    <div>
+        <div><label for="gender">Gender:</label></div>
+        <div>
+            <label for="genderMale">Male</label>
+            <input name="gender" type="radio" id="genderMale" />
+
+            <label for="genderFemale">Female</label>
+            <input name="gender" type="radio" id="genderFemale" />
+        </div>
+    </div>
+
+    <div>
+        <div><label for="smartPhone">Smartphone:</label></div>
+        <div>
+            <label for="androidPhone">Android</label>
+            <input name="smartPhone" type="radio" id="androidPhone" />
+
+            <label for="iphonePhone">IPhone</label>
+            <input name="smartPhone" type="radio" id="iphonePhone" />
+
+            <label for="otherPhone">Other</label>
+            <input name="smartPhone" type="radio" id="otherPhone" />
+        </div>
+    </div>
+
+    <div>
+        <div><label for="beatles">Beatles:</label></div>
+        <div>
+            <label><input name="beatles" type="radio" id="beforeRevolver" value="Before Revolver" />Before Revolver</label>
+
+            <label><input name="beatles" type="radio" id="afterRevolver" value="After Revolver" />After Revolver</label>
+        </div>
+    </div>
 </body>
 </html>

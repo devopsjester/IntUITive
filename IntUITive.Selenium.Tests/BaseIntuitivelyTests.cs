@@ -8,29 +8,16 @@ namespace IntUITive.Selenium.Tests
 {
     using System.Text;
 
-    public abstract class BaseIntuitivelyTests
+    public abstract class BaseIntuitivelyTests : BaseTests
     {
-        protected IWebDriver Driver;
         protected Intuitively Intuitively;
 
         [TestFixtureSetUp]
         public void FixtureSetup()
         {
-            Driver = new PhantomJSDriver
-            {
-                Url = TestSample.UriFromFile("UniqueIdHeader.html")
-            };
-            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(4000));
+            SetupWebDriver();
 
             Intuitively = new Intuitively(Driver);
-
-        }
-
-        [TestFixtureTearDown]
-        public void FixtureTeardown()
-        {
-            Driver.Quit();
-            Driver.Dispose();
         }
     }
 }

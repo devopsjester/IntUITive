@@ -70,7 +70,7 @@ namespace IntUITive.Selenium
         {
             var possibleElements = from e in _allElementsOnPage
                                    let elementAttribute = e.GetAttribute(attributeName)
-                                   where Regex.IsMatch(elementAttribute, term, RegexOptions.IgnoreCase)
+                                   where elementAttribute.Equals(term, StringComparison.OrdinalIgnoreCase)
                                    select e;
 
             return possibleElements.FirstOrDefault();
