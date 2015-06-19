@@ -66,8 +66,6 @@
   <ItemGroup>
     <Compile Include="BaseIntuitivelyTests.cs" />
     <Compile Include="BaseTests.cs" />
-    <Compile Include="ExperimentalTests.cs" />
-    <Compile Include="IntuitivelyFindByIdTests.cs" />
     <Compile Include="EdgeCaseTests.cs" />
     <Compile Include="IntuitivelyFindByLabelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
