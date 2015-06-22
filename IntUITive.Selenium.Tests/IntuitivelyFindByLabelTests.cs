@@ -48,6 +48,14 @@
             
             element.GetAttribute("id").Should().Be("uniqueId");
         }
+
+        [Test]
+        public void Find_WithPartialTextTerm_ReturnsBestMatchingElement()
+        {
+            var element = Intuitively.Find("uniquely identified");
+
+            element.GetAttribute("id").Should().Be("uniqueId");   
+        }
         #endregion
 
     }
