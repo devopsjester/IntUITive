@@ -64,6 +64,16 @@
 
             element.GetAttribute("id").Should().Be("headerId1");
         }
+
+        [Test]
+        public void Find_WithIndexOfOne_ReturnsFirst()
+        {
+            var element = Intuitively.Find("Same text header[1]");
+
+            element.GetAttribute("id").Should().Be("headerId1");
+        }
+
+
         #endregion
 
     }

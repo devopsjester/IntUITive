@@ -23,11 +23,27 @@
                 throw new ArgumentException("parameter cannot be empty or null.", "term");
             }
 
+            var requestedIndex = RequestedIndexInTerm(term);
             var candidates = FindByText(term);
 
             var bestMatches = candidates.WithShortestText();
 
-            return bestMatches.FirstOrDefault();
+            return requestedIndex == 0 ?
+                bestMatches.FirstOrDefault() :
+                bestMatches.ToArray()[requestedIndex-1];
+        }
+
+        private int RequestedIndexInTerm(string term)
+        {
+            var index = 0;
+            const string indexPattern = @".+\[(?<index>\d+)\]$";
+            var match = Regex.Match(term, indexPattern, RegexOptions.IgnoreCase);
+            if (match.Success)
+            {
+                index = int.Parse(match.Groups["index"].Value);
+            }
+
+            return index;
         }
 
         private IEnumerable<IWebElement> FindByText(string term)
