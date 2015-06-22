@@ -34,13 +34,20 @@
         #region Find element by text
 
         [Test]
-        public void Find_WithChildlessLabel_ReturnsLabel()
+        public void Find_WithExactTerm_ReturnsElement()
         {
             var element = Intuitively.Find("This is a uniquely identified header");
 
             element.GetAttribute("id").Should().Be("uniqueId");
         }
 
+        [Test]
+        public void Find_IsCaseInsensitive()
+        {
+            var element = Intuitively.Find("this is a uniquely identified header");
+            
+            element.GetAttribute("id").Should().Be("uniqueId");
+        }
         #endregion
 
     }

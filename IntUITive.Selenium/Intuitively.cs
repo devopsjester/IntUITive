@@ -22,7 +22,7 @@
             }
 
             var candidates = from e in _allElementsOnPage
-                             where e.Text == term
+                             where e.Text.Equals(term, StringComparison.OrdinalIgnoreCase)
                              select e;
 
             return candidates.FirstOrDefault();
