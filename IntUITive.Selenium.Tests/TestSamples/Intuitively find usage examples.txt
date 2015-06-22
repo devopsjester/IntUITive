@@ -1,0 +1,17 @@
+IntUITively Find examples
+-------------------------
+IntUITively.Find("uniquely identified header")
+IntUITively.Find("uniquely named")
+IntUITively.Find("header #1")
+IntUITively.Find("same text header[2]")
+
+IntUITively.Find("First Name:")
+IntUITively.Find("last")
+IntUITively.Find("street address")
+IntUITively.Find("City{input}")
+
+
+IntUITively.Find("Gender|Male")
+IntUITively.Find("like pizza|yes")
+IntUITively.Find("The table|first name[2]")
+IntUITively.Find("The table|address[oscar]")

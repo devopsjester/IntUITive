@@ -5,6 +5,7 @@
     <title>Test sample page</title>
     <style>
         div { margin-bottom: 10px; }
+		label { font-weight: bold; }
     </style>
 </head>
 <body>
@@ -22,6 +23,8 @@
     <h3 id="headerId1">Same text header</h3>
     <h3 id="headerId2">Same text header</h3>
 
+	<hr>
+	
     <!-- label-for'ed input -->
     <div>
         <label for="firstName">First Name:</label>
@@ -46,10 +49,10 @@
 
 
     <!-- childless label -->
-    <div><label>Just a label</label></div>
+    <div><label>Label without child input</label></div>
 
     <!-- Orphan label -->
-    <div><label for="otherStuff">Other questions</label></div>
+    <div><label for="otherStuff">orphan label</label></div>
 	<!-- there is no element named or ID'ed as 'otherStuff' -->
 	
     <div>
@@ -78,12 +81,71 @@
     </div>
 
     <div>
-        <div><label for="beatles">Beatles:</label></div>
+        <div><label for="beetles">beetles:</label></div>
         <div>
-            <label><input name="beatles" type="radio" id="beforeRevolver" value="Before Revolver" />Before Revolver</label>
+            <label><input name="beetles" type="radio" id="beforeRevolver" value="Before Revolver" />Before Revolver</label>
 
-            <label><input name="beatles" type="radio" id="afterRevolver" value="After Revolver" />After Revolver</label>
+            <label><input name="beetles" type="radio" id="afterRevolver" value="After Revolver" />After Revolver</label>
         </div>
     </div>
+
+	<div>
+		<div><label for="iceCream">Do you like ice cream?</label></div>
+		<div>
+			<label for="iceCreamYes">Yes</label>
+			<input name="iceCream" type="radio" id="iceCreamYes" value="yes" />
+			
+			<label for="iceCreamNo">No</label>
+			<input name="iceCream" type="radio" id="iceCreamNo" value="no" />
+		</div>
+	</div>
+
+	<div>
+		<div><label for="pizza">Do you like pizza?</label></div>
+		<div>
+			<label for="pizzaYes">Yes</label>
+			<input name="pizza" type="radio" id="pizzaYes" value="yes" />
+			
+			<label for="pizzaNo">No</label>
+			<input name="pizza" type="radio" id="pizzaNo" value="no" />
+		</div>
+	</div>
+	
+	<hr>
+	
+	<h2 for="theTable">The table</h2>
+	<table id="theTable">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Phone Number</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Oscar</td>
+				<td>Grouch</td>
+				<td>123 Sesame St.</td>
+				<td>Washington</td>
+				<td>D.C.</td>
+				<td>201-555-1234</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Big</td>
+				<td>Bird</td>
+				<td>124 Avian Ave.</td>
+				<td>Derpsville</td>
+				<td>FL</td>
+				<td>201-555-5678</td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
