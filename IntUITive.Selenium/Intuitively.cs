@@ -26,11 +26,28 @@
             var search = new Search(term);
             var candidates = FindByText(search.Term);
 
-            var bestMatches = candidates.WithShortestText();
+            var bestMatches = candidates.WithShortestText().ToArray();
 
-            return search.RequestedIndex == 0 ?
-                bestMatches.FirstOrDefault() :
-                bestMatches.ToArray()[search.RequestedIndex-1];
+            if (!bestMatches.Any())
+            {
+                return null;
+            }
+
+            IWebElement bestMatch;
+            if (search.RequestedIndex == 0)
+            {
+                bestMatch = bestMatches.First();
+            }
+            else if (search.RequestedIndex > 0)
+            {
+                bestMatch = bestMatches[search.RequestedIndex - 1];
+            }
+            else
+            {
+                bestMatch = bestMatches[bestMatches.Count() + search.RequestedIndex];
+            }
+
+            return bestMatch;
         }
 
         private IEnumerable<IWebElement> FindByText(string term)
@@ -49,13 +66,12 @@
         public Search(string term)
         {
             ParseTermString(term);
-
         }
 
         private void ParseTermString(string term)
         {
             int foundIndex;
-            const string indexPattern = @"^(?<term>[^\[]+)(?:\[(?<index>\d+)\])?$";
+            const string indexPattern = @"^(?<term>[^\[]+)(?:\[(?<index>-?\d+)\])?$";
             var match = Regex.Match(term, indexPattern, RegexOptions.IgnoreCase);
             if (!match.Success)
             {
@@ -66,10 +82,6 @@
             RequestedIndex = int.TryParse(match.Groups["index"].Value, out foundIndex)
                 ? foundIndex
                 : 0;
-            
-
         }
-
-
     }
 }

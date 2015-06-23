@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntUITive.Selenium", "IntUI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntUITive.Selenium.Tests", "IntUITive.Selenium.Tests\IntUITive.Selenium.Tests.csproj", "{B3126AA0-DE48-4FD6-B73D-A7D1D4B1C753}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5FBFF797-D375-4468-82FE-05541A290928}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E26FFE11-747D-4CFD-BCA8-C878DDEE61E1}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe

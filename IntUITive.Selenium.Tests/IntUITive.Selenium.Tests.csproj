@@ -76,7 +76,7 @@
   <ItemGroup>
     <Compile Include="BaseIntuitivelyTests.cs" />
     <Compile Include="BaseTests.cs" />
-    <Compile Include="IntuitivelyFindByLabelTests.cs" />
+    <Compile Include="IntuitivelyFindByTextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemporaryHelperFile.cs" />
     <Compile Include="TestSample.cs" />

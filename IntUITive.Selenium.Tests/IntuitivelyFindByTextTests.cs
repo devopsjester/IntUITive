@@ -5,7 +5,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class IntuitivelyFindByLabelTests : BaseIntuitivelyTests
+    public class IntuitivelyFindByTextTests : BaseIntuitivelyTests
     {
         #region Edge cases
         [Test]
@@ -73,6 +73,29 @@
             element.GetAttribute("id").Should().Be("headerId1");
         }
 
+        [Test]
+        public void Find_WithIndexOfTwo_ReturnsSecond()
+        {
+            var element = Intuitively.Find("Same text header[2]");
+
+            element.GetAttribute("id").Should().Be("headerId2");
+        }
+
+        [Test]
+        public void Find_WithIndexOfNegOne_ReturnsLast()
+        {
+            var element = Intuitively.Find("Same text header[-1]");
+
+            element.GetAttribute("id").Should().Be("headerId3");
+        }
+
+        [Test]
+        public void Find_WithIndexOfNegTwo_ReturnsSecondToLast()
+        {
+            var element = Intuitively.Find("Same text header[-2]");
+
+            element.GetAttribute("id").Should().Be("headerId2");
+        }
 
         #endregion
 
