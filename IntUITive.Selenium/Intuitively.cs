@@ -23,27 +23,14 @@
                 throw new ArgumentException("parameter cannot be empty or null.", "term");
             }
 
-            var requestedIndex = RequestedIndexInTerm(term);
-            var candidates = FindByText(term);
+            var search = new Search(term);
+            var candidates = FindByText(search.Term);
 
             var bestMatches = candidates.WithShortestText();
 
-            return requestedIndex == 0 ?
+            return search.RequestedIndex == 0 ?
                 bestMatches.FirstOrDefault() :
-                bestMatches.ToArray()[requestedIndex-1];
-        }
-
-        private int RequestedIndexInTerm(string term)
-        {
-            var index = 0;
-            const string indexPattern = @".+\[(?<index>\d+)\]$";
-            var match = Regex.Match(term, indexPattern, RegexOptions.IgnoreCase);
-            if (match.Success)
-            {
-                index = int.Parse(match.Groups["index"].Value);
-            }
-
-            return index;
+                bestMatches.ToArray()[search.RequestedIndex-1];
         }
 
         private IEnumerable<IWebElement> FindByText(string term)
@@ -52,5 +39,37 @@
                 where Regex.IsMatch(e.Text, term, RegexOptions.IgnoreCase)
                 select e;
         }
+    }
+
+    internal class Search
+    {
+        public int RequestedIndex { get; private set; }
+        public string Term { get; private set; }
+
+        public Search(string term)
+        {
+            ParseTermString(term);
+
+        }
+
+        private void ParseTermString(string term)
+        {
+            int foundIndex;
+            const string indexPattern = @"^(?<term>[^\[]+)(?:\[(?<index>\d+)\])?$";
+            var match = Regex.Match(term, indexPattern, RegexOptions.IgnoreCase);
+            if (!match.Success)
+            {
+                throw new ArgumentException(string.Format("invalid search term: {0}", term), "term");
+            }
+
+            Term = match.Groups["term"].Value;
+            RequestedIndex = int.TryParse(match.Groups["index"].Value, out foundIndex)
+                ? foundIndex
+                : 0;
+            
+
+        }
+
+
     }
 }
