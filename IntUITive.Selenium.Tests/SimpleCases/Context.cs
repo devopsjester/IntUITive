@@ -1,6 +1,7 @@
-﻿namespace IntUITive.Selenium.Tests
+﻿namespace IntUITive.Selenium.Tests.SimpleCases
 {
     using System;
+    using HtmlTestHelpers;
     using NUnit.Framework;
     using OpenQA.Selenium;
     using OpenQA.Selenium.PhantomJS;
@@ -19,7 +20,7 @@
                 Url = TestSample.UriFromFile("UniqueIdHeader.html")
             };
             Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(4000));
-            
+
             Intuitively = new Intuitively(Driver);
         }
 

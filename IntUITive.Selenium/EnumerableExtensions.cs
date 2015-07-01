@@ -4,7 +4,7 @@ namespace IntUITive.Selenium
     using System.Linq;
     using OpenQA.Selenium;
 
-    static class EnumerableExtensions
+    internal static class EnumerableExtensions
     {
         public static IEnumerable<IWebElement> WithShortestText(this IEnumerable<IWebElement> elements)
         {
@@ -21,6 +21,6 @@ namespace IntUITive.Selenium
                             : curMin));
 
             return elementsArray.Where(e => e.Text.Length == shortestElement.Text.Length);
-        } 
+        }
     }
 }

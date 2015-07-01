@@ -74,13 +74,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context.cs" />
-    <Compile Include="EdgeCaseTests.cs" />
-    <Compile Include="IndexingTests.cs" />
+    <Compile Include="SimpleCases\EdgeCaseTests.cs" />
+    <Compile Include="SimpleCases\FindByLabelTests.cs" />
+    <Compile Include="SimpleCases\IndexingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemporaryHelperFile.cs" />
-    <Compile Include="TestSample.cs" />
-    <Compile Include="TextMatchingTests.cs" />
+    <Compile Include="SimpleCases\Context.cs" />
+    <Compile Include="HtmlTestHelpers\TemporaryHelperFile.cs" />
+    <Compile Include="HtmlTestHelpers\TestSample.cs" />
+    <Compile Include="SimpleCases\TextMatchingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

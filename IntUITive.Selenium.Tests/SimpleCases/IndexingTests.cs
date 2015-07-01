@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
-using NUnit.Framework;
-
-namespace IntUITive.Selenium.Tests
+﻿namespace IntUITive.Selenium.Tests.SimpleCases
 {
+    using FluentAssertions;
+    using NUnit.Framework;
+
     public class IndexingTests
     {
         [Test]
